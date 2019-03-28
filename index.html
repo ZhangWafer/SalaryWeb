@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>工资管理系统</title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/boostrap/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/button.css"/>
+	</head>
+	<body background="img/login-bg.png" style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
+    <!-- 登录表单 -->
+    <form style="margin-left:10px;margin-top:80px;">
+    	<div class="text-center">
+    		<h1 style="color: white;">登录界面</h1>
+    	</div>
+        <div class="form-group text-center" >
+            <input type="text" placeholder="账户" class="form-control" id="user" style="display:inline;width:220px;margin-top: 20px;"autocomplete="off" />
+        </div>
+        <div class="form-group text-center">
+            <input type="password" placeholder="密码" class="form-control inp" id="password" style="display:inline;width:220px;"autocomplete="off" />
+        </div>
+        <div class="text-center">
+        <input type="button" id='loginBtn' class="btn btn-primary button-pill " value="登录" style="width: 200px;font-size: 20px;" onclick="buttonFunction()"></input>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+	//var url_header="http://192.168.119.22:7029";
+	var url_header="http://127.0.0.1:5000";
+	localStorage.setItem("url_header",url_header);
+	var accountUrl=url_header+"/account";
+	function buttonFunction() {
+		var personId=$("#user").val().trim();
+		$.ajax({          
+			url: accountUrl,
+			data: {'userNo': personId,'pwd': $("#password").val().trim()},
+			dataType: 'json',
+			type: 'post',
+			async: true,
+			crossDomain: true,
+			success: function(result) {
+				if(result.result == true) {
+					//localStorage.setItem("personId",personId);
+					set("personId",personId);
+					if(result.valid == true) {
+						window.location.href = "ImformationTable.html";
+					} else {
+						window.location.href = "ChangePwd.html";
+					}
+				}
+				else
+				{
+					alert("账户信息有误");
+				}
+			}
+		});
+	}
+	
+	//响应回车键
+	    $('#password').bind('keypress', function(event) {
+	        if (event.keyCode == "13") {            
+	            event.preventDefault(); 
+	            //回车执行查询
+	            $('#loginBtn').click();
+	        }
+	    });
+		
+		$("#password").bind('keypress',function  (event) {
+			if(event.keyCode=="13"){
+				
+			}
+		});
+
+    //封装过期控制代码
+    function set(key,value){
+        var curTime = new Date().getTime();
+        localStorage.setItem(key,JSON.stringify({data:value,time:curTime}));
+    }
+
+</script>
+</html>

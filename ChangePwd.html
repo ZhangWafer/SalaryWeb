@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修改密码</title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/boostrap/bootstrap.css"/>
+	</head>
+	<body background="img/login-bg.png" style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
+		<div class="text-center" style="margin-top: 60px;">
+    		<h1 style="color: white;">修改密码</h1>
+    	</div>
+		<div class="form-group text-center" >
+            <input type="password" placeholder="输入密码" class="form-control " id="pass1" style="display:inline;width:220px;margin-top: 20px;"autocomplete="off" />
+        </div>
+        <div class="form-group text-center">
+            <input type="password" placeholder="确认密码" class="form-control inp" id="password" style="display:inline;width:220px;"autocomplete="off" />
+        </div>
+        <div class="text-center">
+        <input type="button" class="btn btn-primary button-pill " value="确认修改" style="width: 200px;font-size: 20px;" onclick="buttonFunction()"></input>
+        </div>
+	</body>
+	<script type="text/javascript">
+		var personId= localStorage.getItem("personId");
+		var url_header=localStorage.getItem("url_header");
+		var changePwdUrl=url_header+"/change";
+		function buttonFunction () {
+			var pwd1=$("#pass1").val();
+			var pwd2=$("#password").val();
+			if(pwd1!=pwd2)
+			{
+				alert("两次输入密码不相同");
+				return;
+			}
+			$.ajax({          
+			url: changePwdUrl,
+			data: {'userNo': personId,'pwd': $("#password").val().trim()},
+			dataType: 'json',
+			type: 'post',
+			async: true,
+			crossDomain: true,
+			success: function(result) {
+				if	(result.result==true)
+				{
+					window.location.href="ImformationTable.html";
+				}
+			}
+			});
+		}
+
+	</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/boostrap/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/button.css"/>
+	</head>
+	<body background="img/login-bg1.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
+		<div class="text-center" style="margin-top: 150px;">	
+			<input  class="file btn btn-primary" type="file" id="fafafa" name="fileupload" style="display: inline;" />
+			<input type="button" class=" btn btn-primary" value="提交" onclick="jqSubmit()" style="display: inline;"/>		
+		</div>
+	
+
+	</body>
+	<script type="text/javascript">
+		var url_header=localStorage.getItem("url_header");
+        function jqSubmit() {
+            var file_obj = document.getElementById('fafafa').files[0];
+            var fd = new FormData();
+            fd.append('username', 'root')
+            fd.append('fafafa', file_obj);
+            $.ajax({
+                url:url_header+'/file_upload',
+                type:'post',
+                data:fd,
+                async: true,
+                crossDomain: true,
+                processData:false,  //tell jQuery not to process the data
+                contentType: false,  //tell jQuery not to set contentType
+                //这儿的三个参数其实就是XMLHttpRequest里面带的信息。
+
+                success:function (result) {
+                	if(result.Msg==true)
+					alert("导入成功！");
+					else
+					alert("导入失败！");
+                }
+
+            })
+           }
+            
+
+	</script>
+</html>

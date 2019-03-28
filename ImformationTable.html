@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>工资管理系统</title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap-select.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/boostrap/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/select/bootstrap-select.css" />
+	</head>
+
+	<body background="img/login-bg1.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
+		<div style="margin-top:10px ;">
+			<a href="ChangePwd.html" style="color: white;">
+				<h4 style="display: inline;color: white; padding-left: 20px;">修改密码</h4>
+			</a>
+		</div>
+		<div>
+			<h1 class="text-center" style="margin-bottom: 50px; color: white;"> 工资明细</h1> </div>
+		<div class="text-center" style="color: white;margin-bottom: 40px;">
+			<h4 style="display: inline;padding-left:40px;">工号：</h4 ><h4 id="工号" style="display: inline;padding-right: 30px;"></h4>
+			<h4 style="display: inline;">姓名：</h4 ><h4 id="姓名" style="display: inline;padding-right: 30px;"></h4>
+			<h4 style="display: inline;">部门：</h4 ><h4 id="所属部门" style="display: inline;padding-right: 30px;"></h4>
+			 <!--   <h4 id="年份" style="display: inline;padding-right: 30px;"></h4>-->
+			<h4 style="display: inline;">年份月份：</h4 >    
+		<select id="月份" class="form-control" style="width: 100px;display: inline;">
+		    <option >2019-1</option>
+		    <option >2019-2</option>
+		    <option >2019-3</option>
+		</select>
+		<button style="display: inline;background-color: #66AFE9;margin-left: 20px;border-color: #66AFE9;" class=" btn btn-primary" onclick="selectMonth()">更改月份</button>
+	
+	</div>
+<table style="width: 100%;">
+	<tr>
+		<!--并列第一个表格-->
+		<td style="padding-left: 20px;">
+		<table class="table " style="color: white;">
+			<thead><tr bgcolor="#66AFE9" ><td>基本信息</td></tr></thead>
+		<tbody style="border:1px solid #077ACE ;">
+		<tr bgcolor="#5BC0DE">
+			<th>基本职能</th>
+			<th>职位补助</th>
+			<th>职称补助</th>
+			<th>应发合计</th>
+			<th>餐费</th>
+		</tr>
+		<tr bgcolor="white" style="color: black;">
+			<td id="基本职能"></td>
+			<td id="职位补助"></td>
+			<td id="职称补助"></td>
+			<td id="应发合计"></td>
+			<td id="餐费"></td>
+		</tr>
+		<tr bgcolor="#5BC0DE">
+			<th>基本业绩</th>
+			<th>语言补助</th>
+			<th>夜勤补助</th>
+			<th>个人所得税</th>
+			<th>欠勤</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="基本业绩"></td>
+			<td id="语言补助"></td>
+			<td id="夜勤补助"></td>
+			<td id="所得税"></td>
+			<td id="欠勤"></td>
+		</tr>
+		<tr bgcolor="#5BC0DE">
+			<th>业绩能力</th>
+			<th>固定加班费</th>
+			<th>交通补助</th>
+			<th>住房公积金</th>
+			<th>其它</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="业绩能力"></td>
+			<td id="固定加班费"></td>
+			<td id="交通补助"></td>
+			<td id="住房公积金"></td>
+			<td id="其它"></td>
+		</tr>
+		<tr bgcolor="#5BC0DE">
+			<th>满勤补助</th>
+			<th>绩效奖金</th>
+			<th>其它补助</th>
+			<th>社会保险费</th>
+			<th>工会会费</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="满勤补助"></td>
+			<td id="绩效奖金"></td>
+			<td id="其它补助"></td>
+			<td id="社会保险费"></td>
+			<td id="工会会费"></td>
+		</tr>
+			<tr bgcolor="#5BC0DE">
+			<th>住房补助</th>
+			<th>工种补助</th>
+			<th>加班费</th>
+			<th>水电费</th>
+			<th>实发合计</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="住房补助"></td>
+			<td id="工种补助"></td>
+			<td id="加班费"></td>
+			<td id="水电费"></td>
+			<td id="实发合计"></td>
+		</tr>
+	</tbody>
+</table>
+		</td>
+		<!--并列第二个表格-->
+	<td style="padding-left: 20px;padding-right: 20px;">
+		<table class="table" style="color: white;">
+		<tr bgcolor="#66AFE9"><td>请假情况</td></tr>
+		<tr bgcolor="#5BC0DE">
+			<th>事假</th>
+			<th>婚假</th>
+			<th>产检假</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="事假"></td>
+			<td id="婚假"></td>
+			<td id="产检假"></td>
+		</tr>
+		<tr bgcolor="#5BC0DE">
+			<th>病假</th>
+			<th>丧假</th>
+			<th>陪产假</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="病假"></td>
+			<td id="丧假"></td>
+			<td id="陪产假"></td>
+		</tr>
+			<tr bgcolor="#5BC0DE">
+			<th>旷工</th>
+			<th>产假</th>
+			<th>流产假</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="旷工"></td>
+			<td id="产假"></td>
+			<td id="流产假"></td>
+		</tr>
+			<tr bgcolor="#5BC0DE">
+			<th>迟到早退</th>
+			<th>年休假</th>
+			<th>路程假</th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;"> 
+			<td id="迟到早退"></td>
+			<td id="年休假"></td>
+			<td id="路程假"></td>
+		</tr>
+		<tr bgcolor="#5BC0DE">
+			<th>工伤假</th>
+			<th>其它假</th>
+			<th></th>
+		</tr>
+		<tr bgcolor="	white" style="color: black;">
+			<td id="工伤假"></td>
+			<td id="其它假"></td>
+			<td ></td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+</table>
+
+<table style="width: 100%;">
+	<tr>
+		<td style="padding-left: 20px;">
+			<table class="table " style="color: white;" >
+			<tbody  id="tbody1">
+			</tbody>
+			</table>
+		</td>
+		<td style="padding-left: 20px; padding-right:20px;padding-top: 36px;">
+			<table class="table" style="color: white;"  >
+				<tr><th bgcolor="#5BC0DE">调休时数</th><td bgcolor="	white" style="color: black;" id="调休时数"></td><th bgcolor="#5BC0DE">出勤天数</th><td bgcolor="	white" style="color: black;" id="出勤天数"></td></tr>
+				<tr><th bgcolor="#5BC0DE">平日时数</th><td bgcolor="	white" style="color: black;" id="平日时数"></td><th bgcolor="#5BC0DE">个人账号</th><td bgcolor="	white" style="color: black;" id="个人账号"></td></tr>
+				<tr><th bgcolor="#5BC0DE">休日时数</th><td bgcolor="	white" style="color: black;" id="休日时数"></td><th bgcolor="#5BC0DE">职级</th><td bgcolor="	white" style="color: black;" id="职级"></td></tr>
+				<tr><th bgcolor="#5BC0DE">假日时数</th><td bgcolor="	white" style="color: black;" id="假日时数"></td><th bgcolor="#5BC0DE">应发合计</th><td bgcolor="	white" style="color: black;" id="应发合计"></td></tr>
+				<tr><th bgcolor="#5BC0DE">加班费</th><td bgcolor="	white" style="color: black;" id="加班费"></td><th bgcolor="#5BC0DE">实发合计</th><td bgcolor="	white" style="color: black;" id="实发合计"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+	</body>
+<script type="text/javascript">
+	//var personId= localStorage.getItem("personId");
+	var personId=get("personId",1000*10);
+	var url_header=localStorage.getItem("url_header");
+	var imforUrl=url_header+"/imformation";
+	//标题
+	for (var i=0;i<3;i++) {
+		$("#tbody1").append("<tr bgcolor='#5BC0DE' id='加班信息行"+(i+1)+"'></tr>");
+		for (var j=0;j<16;j++) {
+			if(i==1&&j==0){$("#加班信息行1").append("<th style='width: 60px;'>类型</th>")};
+			if(i==2&&j==0){$("#加班信息行2").append("<th>类型</th>")};
+			if((i==2)&&(j==15)){
+				$("#加班信息行"+i).append("<th></th>");
+				break;}
+			$("#加班信息行"+i).append("<th >"+(j+(16*(i-1))+1)+"日</th>");
+		}
+		//加班行
+		$("#tbody1").append("<tr  id='加班行"+(i+1)+"'></tr>");
+		for(var k=0;k<16;k++){
+			if(i==1&&k==0){$("#加班行1").append("<td bgcolor=	'white' style='color: black;'>加班</td>")};
+			if(i==1&&k==0){$("#调休行1").append("<td bgcolor=	'white' style='color: black;'>调休</td>")};
+			if((i==2)&&(k==16)){break;}
+			$("#加班行"+i).append("<td id='加班"+(k+(16*(i-1))+1)+"日' bgcolor=	'white' style='color: black;'></td>");
+		}
+		//调休行
+		$("#tbody1").append("<tr  id='调休行"+(i+1)+"'></tr>");
+		for(var k=0;k<16;k++){
+			if(i==1&&k==0){$("#加班行2").append("<td bgcolor=	'white' style='color: black;'>加班</td>")};
+			if(i==1&&k==0){$("#调休行2").append("<td bgcolor=	'white' style='color: black;'>调休</td>")};
+			if((i==2)&&(k==16)){break;}
+			$("#调休行"+i).append("<td id='调休"+(k+(16*(i-1))+1)+"日' bgcolor=	'white' style='color: black;'></td>");
+		}
+	}
+
+	
+	//添加调休表格式
+//		$("#tbody1").append("<tr bgcolor='#66AFE9'><td>调休详细</td></tr>")
+//	
+//		for (var i=0;i<3;i++) {
+//		$("#tbody1").append("<tr bgcolor='#5BC0DE' id='调休信息行"+(i+1)+"'></tr>");
+//		for (var j=0;j<16;j++) {
+//			if((i==2)&&(j==15)){$("#调休信息行"+i).append("<th></th>");break;}
+//			$("#调休信息行"+i).append("<th >调休"+(j+(16*(i-1))+1)+"日</th>")
+//		}
+//		$("#tbody1").append("<tr  id='调休行"+(i+1)+"'></tr>");
+//		for(var k=0;k<16;k++){
+//			if((i==2)&&(k==16)){break;}
+//			$("#调休行"+i).append("<td bgcolor='white' style='color: black;' id='调休"+(k+(16*(i-1))+1)+"日'></td>")
+//		}
+//	}
+	
+	function TestSend (monthselect) {
+			$.ajax({          
+			url: imforUrl,
+			data: {'userNo': personId,'month':monthselect},
+			dataType: 'json',
+			type: 'post',
+			async: true,
+			crossDomain: true,
+			success: function(result) {
+				 for (var item in result) {
+				 	$("#"+item+"").html(result[item]);
+				 }
+//				$("#月份").append("<option >"+result["月份"]+"</option>");
+				if(typeof(result.Msg)!="undefined"){	alert(result.Msg);}
+			
+			}});
+	}
+	TestSend("");
+	
+	function selectMonth () {
+		TestSend($("#月份").val());
+	}
+	
+	    function get(key,exp){
+        var data = localStorage.getItem(key);
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time>exp) {
+            alert('信息已过期,請重新登錄');
+            window.location.href="index.html";
+            //alert("信息已过期")
+        }else{
+            //console.log("data="+dataObj.data);
+            //console.log(JSON.parse(dataObj.data));
+            var dataObjDatatoJson = JSON.parse(dataObj.data)
+            return dataObjDatatoJson;
+        }
+    }
+
+</script>
+</html>
